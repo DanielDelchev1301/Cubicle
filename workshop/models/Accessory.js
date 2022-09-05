@@ -18,7 +18,13 @@ const accessorySchema = new mongoose.Schema({
         type: String,
         required: true,
         maxlength: 150
-    }
+    },
+    cubes: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'Cube'
+        }
+    ]
 });
 
 const Accessory = mongoose.model('Accessory', accessorySchema);
