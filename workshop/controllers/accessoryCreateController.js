@@ -1,12 +1,13 @@
-const Cube = require('../models/Cube');
 const router = require('express').Router();
+const {createAccessory} = require('../services/accessoryService');
 
-exports.index = (req, res) => {
-    res.render('accessories/attach');
-};
-
-router.post('/attach', (req, res) => {
-    res.render()
+router.post('/create', (req, res) => {
+    createAccessory(req.body)
+        .then(accessory => {
+            console.log(accessory);
+            res.redirect('/');
+        })
+        .catch(err => console.log(err));
 });
 
 router.get('/', (req, res) => {
