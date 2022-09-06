@@ -1,6 +1,6 @@
 const routes = require('./routes');
 const express = require('express');
-const {initializeDataBase} = require('../config/dataBase');
+const { initializeDataBase } = require('../config/dataBase');
 
 const server = express();
 
