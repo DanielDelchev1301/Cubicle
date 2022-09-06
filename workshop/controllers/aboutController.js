@@ -1,3 +1,7 @@
-exports.index = (req, res) => {
+const router = require('express').Router();
+
+router.get('/', (req, res) => {
     res.render('about');
-}
+});
+
+module.exports = router;

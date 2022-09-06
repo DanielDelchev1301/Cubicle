@@ -1,16 +1,25 @@
 const Cube = require('../models/Cube');
+const {getCube} = require('../services/cubeService');
+const router = require('express').Router();
 
-exports.index = (req, res) => {
-    const id = req.params.id;
+router.get('/attach/:id', (req, res) => {
 
-    getCube(id)
+    getCube(req.params.id)
+        .then(cube => {
+            res.render('accessories/attach', { cube });
+        })
+        .catch(err => console.log(err));
+});
+
+router.get('/:id', (req, res) => {
+
+    getCube(req.params.id)
         .then(cube => {
             res.render('details', { cube });
         })
         .catch(err => console.log(err));
-    
-};
 
-function getCube(id) {
-    return Cube.findById(id).lean();
-}
+});
+
+
+module.exports = router;

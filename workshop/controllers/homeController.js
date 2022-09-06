@@ -1,13 +1,13 @@
 const Cube = require('../models/Cube');
+const router = require('express').Router();
+const {getAll} = require('../services/cubeService');
 
-exports.index = (req, res) => {
-    getAll()    
+router.get('/', (req, res) => {
+    getAll()
         .then(cubes => {
             res.render('index', { cubes });
         })
-        .catch(err => console.log(err)); 
-}
+        .catch(err => console.log(err));
+});
 
-function getAll() {
-    return Cube.find().lean();
-}
+module.exports = router;
