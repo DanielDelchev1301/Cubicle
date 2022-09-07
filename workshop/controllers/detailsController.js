@@ -4,10 +4,10 @@ const {getAll} = require('../services/accessoryService');
 const {attachAccessory} = require('../services/cubeService');
 const router = require('express').Router();
 
-router.post('/attach/:id', (req, res) => {
+router.post('/attach/:id', async (req, res) => {
     const accessoryId = req.body.accessory;
     const cubeId = req.params.id;
-    attachAccessory(cubeId, accessoryId)
+    await attachAccessory(cubeId, accessoryId);
     res.redirect(`/details/${cubeId}`);
 });
 
