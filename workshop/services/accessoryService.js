@@ -1,7 +1,7 @@
 const Accessory = require('../models/Accessory');
 
-exports.getAll = () => {
-    return Accessory.find().lean();
+exports.getAllAvailable = (ids) => {
+    return Accessory.find({_id: {$nin: ids}});
 }
 
 exports.createAccessory = (accessoryData) => {
