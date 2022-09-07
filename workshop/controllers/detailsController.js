@@ -1,7 +1,14 @@
 const Cube = require('../models/Cube');
 const {getCube} = require('../services/cubeService');
 const {getAll} = require('../services/accessoryService');
+const {attachAccessory} = require('../services/cubeService');
 const router = require('express').Router();
+
+router.post('/attach/:id', (req, res) => {
+    const accessoryId = req.body.accessory;
+    attachAccessory(req.params.id, accessoryId)
+    res.redirect(`/details/${req.params.id}`);
+});
 
 router.get('/attach/:id', (req, res) => {
 
