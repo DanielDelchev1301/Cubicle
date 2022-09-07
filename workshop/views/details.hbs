@@ -8,13 +8,14 @@
     </div>
     <h2>Accessories</h2>
     <div class="accessories">
-    {{#each accessories}}
+    {{#each cube.accessories}}
         <div class="accessory">
             <img src="{{imageUrl}}">
             <h3>{{name}}</h3>
             <p>{{description}}</p>
         </div>
-    {{/each}}
+    {{else}}
         <h3 class="italic">This cube has no accessories yet...</h3>
+    {{/each}}
     </div>
 </main>

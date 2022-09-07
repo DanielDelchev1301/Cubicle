@@ -2,7 +2,7 @@ const Accessory = require('../models/Accessory');
 const Cube = require('../models/Cube');
 
 exports.getCube = (id) => {
-    return Cube.findById(id).lean();
+    return Cube.findById(id).lean().populate('accessories');
 };
 
 exports.getAll = () => {

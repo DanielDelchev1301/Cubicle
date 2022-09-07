@@ -6,32 +6,24 @@ const router = require('express').Router();
 
 router.post('/attach/:id', (req, res) => {
     const accessoryId = req.body.accessory;
-    attachAccessory(req.params.id, accessoryId)
-    res.redirect(`/details/${req.params.id}`);
+    const cubeId = req.params.id;
+    attachAccessory(cubeId, accessoryId)
+    res.redirect(`/details/${cubeId}`);
 });
 
-router.get('/attach/:id', (req, res) => {
+router.get('/attach/:id', async (req, res) => {
 
-    getCube(req.params.id)
-        .then(cube => {
-
-            getAll()
-                .then(accessories => {
-                    res.render('accessories/attach', { cube, accessories });
-                })
-                .catch(err => console.log(err));
-
-        })
-        .catch(err => console.log(err));
+    const cube = await getCube(req.params.id)
+    const accessories = await getAll();
+    
+    res.render('accessories/attach', { cube, accessories });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
 
-    getCube(req.params.id)
-        .then(cube => {
-            res.render('details', { cube });
-        })
-        .catch(err => console.log(err));
+    const cube = await getCube(req.params.id);
+
+    res.render('details', { cube });
 
 });
 
