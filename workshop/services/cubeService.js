@@ -5,8 +5,14 @@ exports.getCube = (id) => {
     return Cube.findById(id).lean().populate('accessories');
 };
 
-exports.getAll = () => {
-    return Cube.find().lean();
+exports.getAll = (search = '', fromInput, toInput) => {
+    const from = Number(fromInput) || 0;
+    const to = Number(toInput) || 6;
+
+
+    return Cube.find({ name: { $regex: new RegExp(search, 'i') } })
+        .where('difficultyLevel').gte(from).lte(to)
+        .lean();
 };
 
 exports.attachAccessory = async (cubeId, accessoryId) => {
