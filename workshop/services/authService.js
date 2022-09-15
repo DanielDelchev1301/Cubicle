@@ -4,12 +4,17 @@ const User = require('../models/User');
 const saltRounds = 10;
 
 exports.register = async (username, password, repeatPassword) => {
-
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    let createdUser = await User.create({
+    return User.create({
         username,
         password: hashedPassword
     });
-    return createdUser;
+}
+
+exports.login = async (username, password) => {
+    const user = await User.find({username});
+    const hashedPassword = user[0].password;
+    const isCorrect = await bcrypt.compare(password, hashedPassword);
+    return isCorrect;
 }
