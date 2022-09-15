@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const authService = require('../services/authService');
+const cookieParser = require('cookie-parser');
 
 router.get('/register', (req, res) => {
     res.render('register');
@@ -22,9 +23,10 @@ router.get('/login', (req, res) => {
 
 router.post('/login', async (req, res) => {
     const {username, password} = req.body;
-    const isCorrect = await authService.login(username, password);
+    const token = await authService.login(username, password);
     
-    if (isCorrect) {
+    if (token) {
+        cookieParser.
         console.log(`Welcome ${username}!`);
         res.redirect('/');
     } else {
