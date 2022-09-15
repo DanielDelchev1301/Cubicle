@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     const search = req.query.search;
     const from = req.query.from;
     const to = req.query.to;
-    console.log(search, from, to)
+    
     getAll(search, from, to)
         .then(cubes => {
             res.render('index', { cubes });

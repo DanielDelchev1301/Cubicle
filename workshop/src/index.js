@@ -17,4 +17,4 @@ initializeDataBase()
     })
     .catch((err) => {
         console.log(`Cannot connect to DB: ${err}`);
-    })
+    });
