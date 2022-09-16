@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const {createAccessory} = require('../services/accessoryService');
+const accessoryService = require('../services/accessoryService');
 
 router.post('/create', (req, res) => {
-    createAccessory(req.body)
+    accessoryService.createAccessory(req.body)
         .then(accessory => {
             
             res.redirect('/');
