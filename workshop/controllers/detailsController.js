@@ -24,7 +24,8 @@ router.get('/edit/:id', async (req, res) => {
 });
 
 router.post('/edit/:id', async (req, res) => {
-    const cube = await cubeService.getCube(req.params.id);
+    console.log(req.params.id, req.body)
+    await cubeService.update(req.params.id, req.body);
     
     res.redirect(`/details/${req.params.id}`);
 });
@@ -34,7 +35,6 @@ router.get('/:id', async (req, res) => {
     const cube = await cubeService.getCubePopulated(req.params.id);
 
     res.render('details', { cube });
-
 });
 
 
