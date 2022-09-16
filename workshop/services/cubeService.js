@@ -28,5 +28,8 @@ exports.attachAccessory = async (cubeId, accessoryId) => {
 
     await cube.save();
     await accessory.save();
-
 }
+
+exports.create = (cube) => {
+    Cube.create(cube);
+};

@@ -1,8 +1,8 @@
-const Cube = require('../models/Cube');
+const cubeService = require('../services/cubeService');
 const router = require('express').Router();
 
-router.post('/cube', (req, res) => {
-    Cube.create(req.body);
+router.post('/cube', async (req, res) => {
+    await cubeService.create(req.body);
     res.redirect('/');
 });
 
