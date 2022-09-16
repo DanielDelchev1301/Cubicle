@@ -1,6 +1,10 @@
 const Accessory = require('../models/Accessory');
 const Cube = require('../models/Cube');
 
+exports.getCubePopulated = (id) => {
+    return Cube.findById(id).lean().populate('accessories');
+};
+
 exports.getCube = (id) => {
     return Cube.findById(id).lean().populate('accessories');
 };
