@@ -37,3 +37,7 @@ exports.create = async (cube) => {
 exports.update = async (id, cube) => {
     await Cube.findByIdAndUpdate(id, cube);
 };
+
+exports.delete = async (id) => {
+    await Cube.findByIdAndDelete(id);
+}

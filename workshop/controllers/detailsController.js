@@ -43,5 +43,16 @@ router.get('/:id', async (req, res) => {
     res.render('details', { cube, isOwner});
 });
 
+router.get('/delete/:id', async (req, res) => {
+    const cube = await cubeService.getCubePopulated(req.params.id);
+    
+    res.render('delete', {cube});
+});
+
+router.post('/delete/:id', async (req, res) => {
+    await cubeService.delete(req.params.id);
+
+    res.redirect('/');
+});
 
 module.exports = router;
