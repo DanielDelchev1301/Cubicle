@@ -38,8 +38,9 @@ router.post('/edit/:id', async (req, res) => {
 router.get('/:id', async (req, res) => {
 
     const cube = await cubeService.getCubePopulated(req.params.id);
+    const isOwner = cube.owner == req.user?._id;
 
-    res.render('details', { cube });
+    res.render('details', { cube, isOwner});
 });
 
 
