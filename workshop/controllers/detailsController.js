@@ -1,6 +1,7 @@
 const accessoryService = require('../services/accessoryService');
 const cubeService = require('../services/cubeService');
 const router = require('express').Router();
+const {isAuth} = require('../middlewares/authMiddleware');
 
 router.post('/attach/:id', async (req, res) => {
     const accessoryId = req.body.accessory;
@@ -17,9 +18,13 @@ router.get('/attach/:id', async (req, res) => {
     res.render('accessories/attach', { cube, accessories });
 });
 
-router.get('/edit/:id', async (req, res) => {
+router.get('/edit/:id', isAuth, async (req, res) => {
     const cube = await cubeService.getCube(req.params.id);
 
+    if (cube.owner != req.user._id) {
+        return res.render('404');
+    }
+    
     res.render('edit', {cube});
 });
 
