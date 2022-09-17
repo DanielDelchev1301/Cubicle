@@ -25,7 +25,7 @@ router.post('/login', async (req, res) => {
     const token = await authService.login(username, password);
     
     if (token) {
-        res.cookie('user', token);
+        res.cookie('user', token, {httpOnly: true});
         res.redirect('/');
     } else {
         res.render('404');
